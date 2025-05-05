@@ -1,0 +1,23 @@
+services:
+  postgres:
+    …
+  authservice:
+    …
+  userservice:
+    …
+  aiservice:
+    …
+  progressservice:
+    …
+  gateway:
+    …
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - gateway
+    environment:
+      - VITE_API_URL=http://gateway:8000
+    ports:
+      - "3000:80"
